@@ -2,23 +2,59 @@
 
 <html lang="en">
     <head>
-        <title>Cakculator</title>
+        <title>Calculator</title>
         <script src="calculator.js"></script>
-
+        <script src="https://cdnjs.cloudflare.com/ajax/libs/mathjs/6.6.1/math.min.js"></script>
+        <link href="styless.css" rel="stylesheet">
     </head>
 
     <body>
-        <h3>CALCULATOR</h3>
+        <div id="sidebar"></div>
+        <div id="main">
+            <div id="heading"><h3>CALCULATOR</h3></div>
 
-        <table>
-            <tr>
-                <td><input type="text" id="screen"></td>
-                <td><input type="button" value="CLS" onclick="clear_screen()"></td>
-            </tr>
-            <tr>
-                <td><input type="button" value="1" onclick="show('1')" onkeydown="type(event)"></td>
-                <td><input typr="button" value="2" onclick="show('2')" onkeydown="type(event)"></td>
-            </tr>
-        </table>
+            <div id="display">
+                <input type="text" id="screen">
+                <input type="text" id="result">
+            </div>
+        
+            <table>
+                <tr>
+                    <td><input type="button" value="7" onclick="show('7')"></td>
+                    <td><input type="button" value="8" onclick="show('8')"></td>
+                    <td><input type="button" value="9" onclick="show('9')"></td>
+                    <td><input type="button" value="/" onclick="show('/')"></td>
+                </tr>
+
+                <tr>
+                    <td><input type="button" value="4" onclick="show('4')"></td>
+                    <td><input type="button" value="5" onclick="show('5')"></td>
+                    <td><input type="button" value="6" onclick="show('6')"></td>
+                    <td><input type="button" value="+" onclick="show('+')"></td>
+                </tr>
+
+                <tr>
+                    <td><input type="button" value="1" onclick="show('1')"></td>
+                    <td><input type="button" value="2" onclick="show('2')"></td>
+                    <td><input type="button" value="3" onclick="show('3')"></td>
+                    <td><input type="button" value="-" onclick="show('-')"></td>
+                </tr>
+
+                <tr>
+                    <td><input type="button" value="0" onclick="show('0')"></td>
+                    <td><input type="button" value="." onclick="show('.')"></td>
+                    <td><input type="button" value="%" onclick="show('%')"></td>
+                    <td><input type="button" value="*" onclick="show('*')"></td>
+                </tr>
+
+                <tr>
+                    <td><input type="button" value="CLEAR" onclick="clear_screen()"></td>
+                    <td><input type="button" value="BACK" onclick="backspace()"></td>
+                    <td><input type="button" value="ANS" onclick="prev_answer()"></td>
+                    <td><input type="button" value="=" onclick="operate()"></td>
+                </tr>
+            </table>
+        </div>
+        <div id="sidebar"></div>
     </body>
 </html>
