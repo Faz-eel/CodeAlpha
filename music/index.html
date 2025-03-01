@@ -1,0 +1,63 @@
+<!DOCTYPE html>
+
+<html lang="en">
+    <head>
+        <title>Music Player</title>
+        <meta name="viewport" content="width=device-width, initial-scale=1.0">
+        <link href="music.css" rel="stylesheet">
+        <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.11.3/font/bootstrap-icons.min.css">
+        <script src="music.js"></script>
+    </head>
+
+    <body>
+        <div id="nav">
+            <div id="logo">
+                <img src="static/vecteezy_skeleton-wearing-headphone-illustration-with-ai-generative_28179200.png">
+                <div>
+                   <span id="logo-span">M<i class="bi-headphones" style="font-size: 2rem;"></i>od</span> 
+                    <span>swings</span>
+                </div>
+            </div>
+            <div id="view-track">
+                <div id="now-playing">
+                    <div id="top-info"></div>
+                    <div id="not-playing"></div>
+                    <div id="image-cover"><img id="cover"></div>
+                    <div id="music-info"></div>
+                    <div id="seeker">
+                        <i class="bi-skip-start-fill" id="seek-previous"></i>
+                        <i class="bi-play-fill" id="stop-start"></i>
+                        <i class="bi-skip-end-fill" id="seek-next"></i>
+                    </div>
+                </div>
+                <div id="controls">
+                    <div id="time">
+                        <div id="current-time"></div>
+                        <input id="time-control" type="range" value="0" min="0" max="100" onchange="seek()">
+                        <div id="duration"></div>
+                    </div>
+                    <div id="volume">
+                        <i class="bi-volume-down-fill"></i>
+                        <input id="volume-control" type="range" value="50" min="0" max="100" onchange="volume()">
+                        <i class="bi-volume-up-fill"></i>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <div id="tracklist">
+            <table id="laptop">
+                <thead>
+                    <tr>
+                    </tr>
+                </thead>
+                <tbody>
+
+                </tbody>
+            </table>  
+        </div>
+
+        
+    </body>
+
+</html>

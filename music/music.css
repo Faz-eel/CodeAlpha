@@ -1,0 +1,318 @@
+
+    body {
+        background-color: rgb(37, 36, 36);
+        display: flex;
+        flex-direction: row;
+        flex-wrap: nowrap;
+        margin: 0px;
+        padding: 0.5rem;
+        min-height: 100vh;
+        font-family:Georgia, 'Times New Roman', Times, serif
+    }
+
+    #nav {
+        display: flex;
+        flex-direction: column;
+        width: 28%;
+        position: fixed;
+    }
+
+    @keyframes spin {
+        0% {
+          rotate: 0deg;
+        }
+      
+        25% {
+          rotate: y 90deg;
+        }
+      
+        50% {
+          rotate: y 180deg;
+        }
+      
+        100% {
+          rotate: y 0deg;
+        }
+      }
+
+    #logo {
+        display: flex;
+        flex-direction: row;
+        width: 100%;
+        height: 20%;
+        border: 0.2px solid rgb(80, 76, 76);
+        border-radius: 3rem;
+        text-align: center;
+        justify-content: center;
+        align-items: center;
+        margin-bottom: 2%;
+    }
+
+    #logo > img {
+        width: 6rem;
+        height: 7rem;
+        border-radius: 3rem;
+    }
+
+    #logo > div {
+        display: flex;
+        flex-direction: column;
+        color: rgb(8, 1, 1);
+        font-family:'Lucida Sans', 'Lucida Sans Regular', 'Lucida Grande', 'Lucida Sans Unicode', Geneva, Verdana, sans-serif;
+        margin-left: 0.5rem;
+    }
+
+    #logo > img {
+        animation-name: spin;
+        animation-duration: 4s;
+        animation-iteration-count: infinite;
+        animation-timing-function: linear;
+    }
+
+    #logo-span {
+        margin-right: 1rem;
+    }
+
+    
+    #view-track {
+        height: 78%;
+        width: 100%;
+        display: flex;
+        flex-direction: column;
+        text-align: center;
+        color: rgb(8, 1, 1);
+        border: 0.2px solid rgb(80, 76, 76);
+        border-radius: 1rem;
+    }
+
+    #tracklist {
+        display: flex;
+        flex-direction: column;
+        margin-left: 29%;
+        background-color: rgb(37, 36, 36);
+        color: rgb(212, 207, 207);
+        border: 0.2px solid rgb(80, 76, 76);
+        border-radius: 1rem;
+        width: 70%;
+        padding: 1rem;
+
+    }
+
+    td > img {
+        height: 3rem;
+    }
+
+    td {
+        padding-left: 1rem;
+    }
+    
+    table {
+        cursor: auto;
+        border-collapse: collapse;
+    }
+
+    thead {
+        border-bottom: 0.1px solid #525050;
+        text-align: left;
+    }
+
+    th {
+        padding-left: 1rem;
+    }
+
+    tr:hover {
+        background-color: rgb(35, 49, 77);
+        cursor: pointer;
+    }
+
+    .number, thead {
+        color: rgb(144, 133, 133)
+    }
+
+    #list-image {
+        width: 5%;
+    }
+
+    #now-playing {
+        display: flex;
+        flex-direction: column;
+        height: 85%;
+        width: 100%;  
+    }
+
+    #controls {
+        height: 15%;
+        width: 100%;
+        text-align: center;
+    }
+    
+    #top-info {
+        margin-bottom: 1%;
+    }
+    
+    #image-cover {
+        width: 80%;
+        height: 70%;
+        margin-bottom: 1rem;
+        align-self: center;
+    }
+
+    #music-info {
+        align-content: center;
+    }
+
+    #song-title {
+        font-size: larger;
+    }
+
+    #composer {
+        font-size: medium;
+    }
+    
+    #cover {
+        width: 100%;
+        height: 100%;
+    }
+       
+    #seeker {
+        font-size: 3rem;
+    }
+
+    #time-control {
+        width: 60%;
+        height: 0.2rem;
+    }
+
+    #volume-control {
+        width: 30%;
+        height: 0.2rem;
+    }
+
+    #time, #volume {
+        display: flex;
+        flex-direction: row;
+        align-items: center;
+        justify-content: center;
+        margin-bottom: 1rem;
+    }
+
+
+
+@media screen and (height > 1000px) and (width > 750px) {
+    #nav {
+        width: 48%;
+    }
+
+    #tracklist {
+        width: 51%;
+        border: 0.2px solid rgb(80, 76, 76);
+        margin-left: 49%; 
+    }
+
+    .number, .albums, thead {
+        display: none;
+    }
+
+    body {
+        font-size: large;
+        position: relative;
+        padding: 0.2%;
+    }
+
+}
+
+@media only screen and (width < 750px) {
+    body {
+        display: flex;
+        flex-direction: column;
+        padding: 0;
+    }  
+
+    #nav {
+        width: 100%;
+        position: relative;
+    }
+
+    #logo {
+        justify-content: left;
+        padding-left: 5%;
+        align-items: center;
+        position: fixed;
+        top: 0;
+        height: 70px;
+        z-index: 4;
+        border-radius: 0px;
+    }
+
+    #logo > img {
+        height: 60px;
+        width: 60px;
+    }
+    
+    #tracklist {
+        min-height: 100vh;
+        width: 100%;
+        margin: 0;
+        padding: 0;
+        z-index: 0;
+        margin-top: 60px;
+        margin-bottom: 150px;;
+        padding-top: 30px;
+    }
+
+    #top-info {
+        display: none;
+    }
+
+    #image-cover {
+        width: 20%;
+        height: 95%;
+        margin-bottom: 0;
+    }
+
+    #view-track {
+        position: fixed;
+        bottom: 0px;
+        height: 20%;
+        z-index: 2;
+    }
+
+    #now-playing {
+        display: flex;
+        flex-direction: row;
+        align-items: center;
+        height: 50%;
+        width: 100%;
+        padding: 0.5rem;
+        
+    }
+
+    #controls {
+        padding: 0;
+    }
+
+    #music-info {
+        margin-left: 1rem;
+    }
+
+    #seeker {
+        position: fixed;
+        font-size: 1.3rem;
+        right: 1rem;
+    }
+
+    #volume{
+        margin-bottom: 0rem;
+    }
+
+    .number, .albums, thead {
+        display: none;
+    }
+
+
+    @media only screen and (height < 670px) {
+        #view-track {
+            height: 25%;
+        }
+    }
+}
