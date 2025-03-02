@@ -1,4 +1,4 @@
-
+// show the value of a key on the screen when pressed
 document.addEventListener('keydown', function(event) {
     if (event.key == '0' || event.key == '1' 
         || event.key == '2' || event.key == '3' 
@@ -10,12 +10,13 @@ document.addEventListener('keydown', function(event) {
             document.querySelector("#screen").value += event.key;
         }       
 
-    else if (event.key == 'Backspace') {
+       // delete a character from the screen if the backspace key was pressed 
+        else if (event.key == 'Backspace') {
         backspace();
     }
 })
 
-document.addEventListener('keyup', function(event) {
+document.addEventListener('keydown', function(event) {
     if (event.key == 'enter') {
         operate();
     }

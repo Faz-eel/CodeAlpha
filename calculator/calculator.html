@@ -2,6 +2,7 @@
 
 <html lang="en">
     <head>
+        <meta name="viewport" content="width=device-width, initial-scale=1.0">
         <title>Calculator</title>
         <script src="calculator.js"></script>
         <script src="https://cdnjs.cloudflare.com/ajax/libs/mathjs/6.6.1/math.min.js"></script>
@@ -9,8 +10,7 @@
     </head>
 
     <body>
-        <div id="sidebar"></div>
-        <div id="main">
+        <div id="calculator">
             <div id="heading"><h3>CALCULATOR</h3></div>
 
             <div id="display">
@@ -18,43 +18,44 @@
                 <input type="text" id="result">
             </div>
         
-            <table>
-                <tr>
-                    <td><input type="button" value="7" onclick="show('7')"></td>
-                    <td><input type="button" value="8" onclick="show('8')"></td>
-                    <td><input type="button" value="9" onclick="show('9')"></td>
-                    <td><input type="button" value="/" onclick="show('/')"></td>
-                </tr>
+            <div id="table">
+                <table>
+                    <tr>
+                        <td><input type="button" value="7" onclick="show('7')"></td>
+                        <td><input type="button" value="8" onclick="show('8')"></td>
+                        <td><input type="button" value="9" onclick="show('9')"></td>
+                        <td><input type="button" value="/" onclick="show('/')"></td>
+                    </tr>
 
-                <tr>
-                    <td><input type="button" value="4" onclick="show('4')"></td>
-                    <td><input type="button" value="5" onclick="show('5')"></td>
-                    <td><input type="button" value="6" onclick="show('6')"></td>
-                    <td><input type="button" value="+" onclick="show('+')"></td>
-                </tr>
+                    <tr>
+                        <td><input type="button" value="4" onclick="show('4')"></td>
+                        <td><input type="button" value="5" onclick="show('5')"></td>
+                        <td><input type="button" value="6" onclick="show('6')"></td>
+                        <td><input type="button" value="+" onclick="show('+')"></td>
+                    </tr>
 
-                <tr>
-                    <td><input type="button" value="1" onclick="show('1')"></td>
-                    <td><input type="button" value="2" onclick="show('2')"></td>
-                    <td><input type="button" value="3" onclick="show('3')"></td>
-                    <td><input type="button" value="-" onclick="show('-')"></td>
-                </tr>
+                    <tr>
+                        <td><input type="button" value="1" onclick="show('1')"></td>
+                        <td><input type="button" value="2" onclick="show('2')"></td>
+                        <td><input type="button" value="3" onclick="show('3')"></td>
+                        <td><input type="button" value="-" onclick="show('-')"></td>
+                    </tr>
 
-                <tr>
-                    <td><input type="button" value="0" onclick="show('0')"></td>
-                    <td><input type="button" value="." onclick="show('.')"></td>
-                    <td><input type="button" value="%" onclick="show('%')"></td>
-                    <td><input type="button" value="*" onclick="show('*')"></td>
-                </tr>
+                    <tr>
+                        <td><input type="button" value="0" onclick="show('0')"></td>
+                        <td><input type="button" value="." onclick="show('.')"></td>
+                        <td><input type="button" value="%" onclick="show('%')"></td>
+                        <td><input type="button" value="*" onclick="show('*')"></td>
+                    </tr>
 
-                <tr>
-                    <td><input type="button" value="CLEAR" onclick="clear_screen()"></td>
-                    <td><input type="button" value="BACK" onclick="backspace()"></td>
-                    <td><input type="button" value="ANS" onclick="prev_answer()"></td>
-                    <td><input type="button" value="=" onclick="operate()"></td>
-                </tr>
-            </table>
+                    <tr>
+                        <td><input type="button" value="CLEAR" onclick="clear_screen()"></td>
+                        <td><input type="button" value="BACK" onclick="backspace()"></td>
+                        <td><input type="button" value="ANS" onclick="prev_answer()"></td>
+                        <td><input type="button" value="=" onclick="operate()"></td>
+                    </tr>
+                </table>
+            </div>
         </div>
-        <div id="sidebar"></div>
     </body>
 </html>
