@@ -1,4 +1,5 @@
 
+// list all songs with source files
 let tracks = [
     { id: "0", title: "Gardens", cover: "static/gardens-stylish-chill-303261.webp", artist: "Penguinmusic", album: "Stylish Chill", path: "songs/gardens-stylish-chill-303261.mp3"},
     { id: "1", title: "Nightfall", cover: "static/nightfall-future-bass-music-228100.jpg", artist: "SoulProdMusic", album: "Summer Days", path: "songs/nightfall-future-bass-music-228100.mp3"},
@@ -14,30 +15,35 @@ let tracks = [
 
 ]
 
-
+// create audio element for loading the track to be played
 let current_track = document.createElement('audio');
+
+// keep track of the 'tracks' list index of the current playing song
 let playing = 0;
 
 function seek() {
+    // seek the track depending on how much the user drags the time input field  
     time_control = document.querySelector('#time-control');
-    current_track.currentTime = current_track.duration * (time_control.value/100); 
-    
+    current_track.currentTime = current_track.duration * (time_control.value/100);  
 }
 
 function volume() {
+    // adjust volume based on user input from dragging the volume input field
     volume_control = document.querySelector('#volume-control');
     current_track.volume = volume_control.value/100;
 }
 
 
-
 document.addEventListener('DOMContentLoaded', function() {
+    // seek the current playing track every second
     setInterval(constant_seek, 1000);
 
+    // pause or play the current song when the play/pause button is clicked
     document.querySelector('#stop-start').addEventListener('click', function() {
         playpause();
     });
 
+    // play next or previous track depending on which button is clicked
     document.addEventListener('click', event => {
         element = event.target;
 
@@ -49,6 +55,7 @@ document.addEventListener('DOMContentLoaded', function() {
         }
     });
 
+    // set current track to the clicked on element from the tracks table
     document.addEventListener('click', event => {
         element = event.target;
 
@@ -59,18 +66,21 @@ document.addEventListener('DOMContentLoaded', function() {
         }
     });
 
-    
+    // automatically play next track when the current one ends
     current_track.addEventListener('ended', function() {
         play_next(playing);
 
     });
 
+    // list all tracks on the "tracklist" table
     tracks.forEach(item => {
         list_track(item);
     });
 
+    // set a random background color for the "view-track" and "nav" divs
     random_color();
 
+    // create table heading elements for the "tracklist" table
     heading1 = document.createElement('th');
     heading1.innerHTML = '#';
     heading1.className = 'number';
@@ -89,9 +99,16 @@ document.addEventListener('DOMContentLoaded', function() {
     document.querySelector('thead').append(heading3);
     document.querySelector('thead').append(heading4);
 
+    // create a soundwave icon to be attached to the currently playing track on the table
+    soundwave = document.createElement('i');
+    soundwave.className = 'bi-soundwave';
+
+    // pass a message to the user when there is no currently loaded/playing audio
     document.querySelector('#not-playing').innerHTML = 'FIND SOMETHING TO PLAY'
 
+    
     function list_track(item) {
+        // create a table row and populate it with data from each individual song
         tr = document.createElement('tr');
         tr.id = `${item.id}`;
 
@@ -122,34 +139,43 @@ document.addEventListener('DOMContentLoaded', function() {
 
         div = document.createElement('div');
         div1 = document.createElement('div');
+        div1.id = `list-title${item.id}`;
+        div1.className = 'list-title';
         div1.append(title);
         div2 = document.createElement('div');
         div2.append(artiste);
         div.append(div1);
         div.append(div2);
-        
-        
-        tbody = document.querySelector('tbody');
-    
+
         tr.append(id);
         tr.append(image_column);
         tr.append(div);
         tr.append(album);
+        
+        // append the created row unto the table body
+        tbody = document.querySelector('tbody');
         tbody.append(tr);
     }
 
 
     function play_track(index) {
+        // clear all information for the previous track in the "view-track" div
         clear_info();
+
+        // load the audio element with the selected track 
         current_track.src = tracks[index].path;
         current_track.load();
+
+        // play the loaded audio and update the variable for tracking the list index of the current track
         current_track.play();
         playing = index;
 
+        // set a random background color for the "view-track" and "nav" divs
+        random_color();
+
+        // populate the screen with the necessary track info
         document.querySelector('#top-info').innerHTML = 'Now Playing';
         document.querySelector('#cover').src = `${tracks[index].cover}`;
-
-        random_color();
 
         title = document.createElement('div');
         title.innerHTML = `${tracks[index].title}`;
@@ -162,28 +188,40 @@ document.addEventListener('DOMContentLoaded', function() {
         document.querySelector('#music-info').append(title);
         document.querySelector('#music-info').append(artiste);
 
+        // change the play button to a pause button to allow user pause track
         document.querySelector('#stop-start').className = 'bi-pause-fill';
 
+        // attach the soundwave icon to the current track
+        document.querySelector(`#list-title${index}`).append(soundwave);
     }
 
+
     function playpause() {
+        // play the first track on the list, if the audio element is not loaded with a track yet
         if (current_track.readyState == 0) {
             play_track(0);
             document.querySelector('#stop-start').className = 'bi-pause-fill';
         }
+
+        // if there is a currently loaded audio element, play if it is paused and vice versa. Alternate the play/pause icons in each case
         else {
             if (current_track.paused) {
                 current_track.play();
                 document.querySelector('#stop-start').className = 'bi-pause-fill';
+                document.querySelector('.bi-soundwave').style.animationPlayState = 'running';
+
             }
             else {
                 current_track.pause();
                 document.querySelector('#stop-start').className = 'bi-play-fill';
+                document.querySelector('.bi-soundwave').style.animationPlayState = 'paused';
             }
         }
     }
 
+
     function clear_info() {
+        // remove every info about the current track from the "view-track" div
         document.querySelector('#not-playing').style.display = 'none';
         document.querySelector('#music-info').innerHTML = '';
         document.querySelector('#time-control').value = 0;
@@ -191,7 +229,9 @@ document.addEventListener('DOMContentLoaded', function() {
         document.querySelector('#duration').innerHTML = '';
     }
 
+    
     function play_next(index) {
+        // if the index of the current track on the 'tracks' list is equal to the number of available tracks (currently on last track), play the first track, else play the next track
         if (index < tracks.length - 1) {
             index += 1;
             play_track(index);
@@ -201,7 +241,9 @@ document.addEventListener('DOMContentLoaded', function() {
         }
     }
 
+
     function play_previous(index) {
+        // if index of current track on the 'tracks' list is zero (currently on first track), play the last track, else play the previous track
         if (index > 0) {
             index -= 1;
             play_track(index);
@@ -212,7 +254,9 @@ document.addEventListener('DOMContentLoaded', function() {
         }
     }
 
+
     function find_duration(track) {
+        // return the total time in minutes and seconds for the specified audio
         total_minutes = Math.round(track.duration / 60);
         total_seconds = Math.floor(track.duration % 60);
 
@@ -221,23 +265,28 @@ document.addEventListener('DOMContentLoaded', function() {
         }
     }
 
+
     function constant_seek() {
+        // only perform a constant seek if there is a currently loaded/playing audio element
         if (current_track.src) {
             time_control = document.querySelector('#time-control');
     
+            // adjust the time seek input value depending on the current time on the audio element
             time_control.value = (current_track.currentTime/current_track.duration) * 100;
     
+            // find the number of minutes and seconds elapsed on the audio element and update the "current-time" div
             minute = Math.round(current_track.currentTime / 60);
             second = Math.floor(current_track.currentTime % 60);
     
             if (second < 10) {
                 second = `0${second}`;
             }
-    
-            find_duration(current_track);
-    
+
             current_time = document.querySelector('#current-time');
             current_time.innerHTML = `${minute}:${second}`;
+    
+            // find the total duration of the audio in minutes and seconds and update the "duration" div
+            find_duration(current_track);
     
             duration = document.querySelector('#duration');
             duration.innerHTML = `${total_minutes}:${total_seconds}`;
@@ -246,6 +295,7 @@ document.addEventListener('DOMContentLoaded', function() {
     }
 
     function random_color() {
+        // select a random rgb color mix for the specified backgrounds
         let red = Math.floor(Math.random() * 256) + 64;
         let green = Math.floor(Math.random() * 256) + 64;
         let blue = Math.floor(Math.random() * 256) + 64;

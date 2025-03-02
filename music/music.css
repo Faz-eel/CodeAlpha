@@ -35,6 +35,24 @@
         }
       }
 
+    @keyframes vibrate {
+        0% {
+            opacity: 3%;
+        }
+        25% {
+            opacity: 25%;
+        }
+        50% {
+            opacity: 50%;
+        }
+        75% {
+            opacity: 75%;
+        }
+        100% {
+            opacity: 100%;
+        }
+    }
+
     #logo {
         display: flex;
         flex-direction: row;
@@ -52,6 +70,10 @@
         width: 6rem;
         height: 7rem;
         border-radius: 3rem;
+        animation-name: spin;
+        animation-duration: 4s;
+        animation-iteration-count: infinite;
+        animation-timing-function: linear;
     }
 
     #logo > div {
@@ -60,13 +82,6 @@
         color: rgb(8, 1, 1);
         font-family:'Lucida Sans', 'Lucida Sans Regular', 'Lucida Grande', 'Lucida Sans Unicode', Geneva, Verdana, sans-serif;
         margin-left: 0.5rem;
-    }
-
-    #logo > img {
-        animation-name: spin;
-        animation-duration: 4s;
-        animation-iteration-count: infinite;
-        animation-timing-function: linear;
     }
 
     #logo-span {
@@ -98,8 +113,17 @@
 
     }
 
-    td > img {
+    #list-image {
+        width: 5%;
+    }
+
+    #list-image > img {
         height: 3rem;
+    }
+
+    .list-title {
+        display: flex;
+        flex-direction: row;
     }
 
     td {
@@ -125,12 +149,17 @@
         cursor: pointer;
     }
 
-    .number, thead {
-        color: rgb(144, 133, 133)
+    .bi-soundwave {
+        color: rgb(74, 200, 74);
+        margin-left: 1rem;
+        animation-name: vibrate;
+        animation-duration: 1s;
+        animation-iteration-count: infinite;
+        animation-timing-function: linear;
     }
 
-    #list-image {
-        width: 5%;
+    .number, thead {
+        color: rgb(144, 133, 133)
     }
 
     #now-playing {
